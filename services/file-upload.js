@@ -28,7 +28,10 @@ const upload = multer({
   storage: multerS3({
     s3,
     bucket: 'image-video-upload',
+    // Set public read permissions
     acl: 'public-read',
+    // Auto detect content type
+    contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function (req, file, cb) {
       cb(null, {fieldName: 'TESTING_META_DATA!'});
     },
